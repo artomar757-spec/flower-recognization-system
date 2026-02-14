@@ -1,0 +1,240 @@
+//Common functions
+function takePrint(url,pagetitle)
+{
+	//alert(url+" , "+pagetitle);
+	var w = window.open(url, pagetitle, '_blank', 'width=500, height=600, scrollbars=yes');
+	w.resizeTo(900, 700);
+	w.focus();
+}
+function justSubmit()
+{   
+	document.forms[0].submit();
+}
+function showDiv(elem)
+{
+   if(elem.value == 1)
+	{
+		document.getElementById('hidden_div').style.display = "block";
+	}
+	else
+	{
+		document.getElementById('hidden_div').style.display = "none";
+	}  
+} 
+
+function showDiv1(elem)
+{
+   if(elem.value == "YES")
+	{
+		document.getElementById('hidden_div1').style.display = "block";
+	}
+	else
+	{
+		document.getElementById('hidden_div1').style.display = "none";
+	}  
+} 
+
+function intToFloat(num, decPlaces, ids) 
+{ 
+	if(document.getElementById(ids).value == '')
+	{
+		return false;
+	}
+	else
+	{
+		document.getElementById(ids).value = Number(num).toFixed(decPlaces); 
+	}
+	
+}
+
+//this.value = parseFloat(this.value).toFixed(2);
+
+/*$(document).ready(function(){
+	$('a.curi').click(function() {
+		var id = $(this).attr('id');
+		//alert(id);
+		$("#page_div").html("<center><br><br><br><br><br><br><img src='../../img/loadingx.gif'></center>");
+		$.ajax({type: "POST", url: "load.php", data: {mainid: id}, success: function(result){
+			if(result==0){ alert("Bad request");}
+			else{ $("#page_div").load(result); }
+		}});
+	});
+});*/
+//Rightclick disabled
+/*var message="Function Disabled!";
+function clickIE4(){
+	if (event.button==2){
+		return false;
+	}
+}
+function clickNS4(e){
+	if (document.layers||document.getElementById&&!document.all){
+		if (e.which==2||e.which==3){
+			return false;
+		}
+	}
+}
+if (document.layers){
+	document.captureEvents(Event.MOUSEDOWN);
+	document.onmousedown=clickNS4;
+}
+else if (document.all&&!document.getElementById){
+	document.onmousedown=clickIE4;
+}
+document.oncontextmenu=new Function("return false")*/
+//Marks
+//function GetMarks(Semster)
+function GetMarks(Component)
+{   
+	//alert(Semster);
+	if( document.loginForm.ExamName.value=='ps' )
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please select exam.</strong>";
+		document.getElementById("ExamName").focus();
+		return false;
+	}
+	else if(document.loginForm.Component.value=='ps')
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please select component.</strong>";
+		document.getElementById("Component").focus();
+		return false;
+	}
+	/*else if(document.loginForm.Semester.value=='ps')
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please select Semester.</strong>";
+		document.getElementById("Semester").focus();
+		return false;
+	}*/		
+	else
+	{
+		var e = document.getElementById("Component");
+		var Component = e.options[e.selectedIndex].value;
+		var f = document.getElementById("ExamName");
+		var ExamID = f.options[f.selectedIndex].value;
+		//var temp="report_student_marks.php?Semester="+ Semster + "&Component=" + Component +  "&ExamID=" + ExamID  ; 
+		var temp="report_student_marks.php?Component=" + Component +  "&ExamID=" + ExamID  ; 
+		window.location=temp;	
+	}
+}
+// Student Grivance
+function checkform()
+{
+	if( document.loginForm.type_of_grivance.value== "ns" )
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Select Type of Grivance.</strong>";
+		document.getElementById("type_of_grivance").focus();
+		return false;	
+	}
+	else if( document.loginForm.ddlDepartment.value=='PSN' )
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Select Department.</strong>";
+		document.getElementById("ddlDepartment").focus();
+		return false;	
+	}	
+	else if( document.loginForm.txtGrivance.value=='' )
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Write some Grivance.</strong>";
+		document.getElementById("txtGrivance").focus();
+		return false;	
+	}	
+}
+//Hostel
+function call()
+{
+	if(document.getElementById("Hostel_Name").value == "ns")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please select the Hostel name!</strong>";
+		return false;
+	}
+	if(document.getElementById("Hostel_No").value == "")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter the room no.!</strong>";
+		return false;
+	}
+	if(document.getElementById("FirstName").value == "")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter the name!</strong>";
+		return false;
+	}
+	else if(document.getElementById("DOB").value=="")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter the date of birth!</strong>";
+		return false;
+	}
+	else if(document.getElementById("Father").value=="")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter the Father name!</strong>";
+		return false;
+	}
+	else if(document.getElementById("Mobile").value=="")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter the Mobile!</strong>";
+		return false;
+	}
+	else if(document.getElementById("EmailId").value=="")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter EmailId!</strong>";
+		return false;
+	}
+	else if(document.getElementById("Address").value=="")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter the Address!</strong>";
+		return false;
+	}
+	else if(document.getElementById("Pin").value=="")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter the Pincode!</strong>";
+		return false;
+	}
+	else if(document.getElementById("Phone").value=="")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter the Phone!</strong>";
+		return false;
+	}
+	else if(document.getElementById("MedicalHistory").value=="")
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please enter the Medical History!</strong>";
+		return false;
+	}
+	else if(document.getElementById("Declare_check").checked == false)
+	{
+		document.getElementById("mismsgs").innerHTML = "<strong>Please check the Declaration!</strong>";
+		return false;
+	}
+	else
+	{
+		document.forms[0].submit();
+	}
+}
+function isNumberKey(evt)
+{
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode>46)
+	{
+        return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+function updateTotal() {
+	var total = 0;//
+	var list = document.getElementsByClassName("input");
+	var values = [];
+	for(var i = 0; i < list.length; ++i) {
+		values.push(parseFloat(list[i].value));
+	}
+	total = values.reduce(function(previousValue, currentValue, index, array){
+		return previousValue + currentValue;
+	});
+	document.getElementById("TotalAmount").value = total;    
+}
+function isNumber(evt) {
+	evt = (evt) ? evt : window.event;
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+	if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+		return false;
+	}
+	return true;
+}
